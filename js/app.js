@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const conversationContainer = document.getElementById('conversation-container');
     const messageTemplate = document.getElementById('message-template');
+    const mainFooter = document.getElementById('main-footer');
 
     let currentIndex = 0;
     let totalMessages = 0;
@@ -50,10 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 avatarContainer.appendChild(img);
 
-                messageElement.querySelector('.author').textContent = personaje.nombre;
-                messageElement.querySelector('.text').textContent = entry.texto;
-
-                // Añadir información si el mensaje va dirigido a alguien
+                // Añadir información si el mensaje va dirigido a alguien (arriba)
                 if (entry.dirigidoA) {
                     const dirigidoAPersonaje = personajes.find(p => p.id === entry.dirigidoA);
                     if (dirigidoAPersonaje) {
@@ -61,12 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                messageElement.querySelector('.author').textContent = personaje.nombre;
+                messageElement.querySelector('.text').textContent = entry.texto;
+
                 // Añadir el mensaje al contenedor
                 conversationContainer.appendChild(messageElement);
             });
 
             // Guardar referencia a todos los mensajes
             messages = document.querySelectorAll('.message');
+
+            // Ocultar footer inicialmente
+            if (mainFooter) {
+                mainFooter.classList.add('hidden');
+            }
 
             // Inicializar la vista
             updateView();
@@ -96,12 +102,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Scroll al mensaje actual
+        // Scroll al inicio del mensaje actual
         if (messages[currentIndex]) {
             messages[currentIndex].scrollIntoView({
                 behavior: 'smooth',
-                block: 'center'
+                block: 'start'
             });
+        }
+
+        // Mostrar/ocultar footer
+        if (mainFooter) {
+            if (currentIndex === totalMessages - 1) {
+                mainFooter.classList.remove('hidden');
+            } else {
+                mainFooter.classList.add('hidden');
+            }
         }
 
         // Actualizar contador

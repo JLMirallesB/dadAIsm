@@ -13,17 +13,17 @@
     {
       "id": "hugo-ball",
       "nombre": "Hugo Ball (IA)",
-      "avatar": "assets/images/hugo-ball.png"
+      "avatar": "assets/images/ball.png"
     },
     {
       "id": "tristan-tzara",
       "nombre": "Tristan Tzara (IA)",
-      "avatar": "assets/images/tristan-tzara.png"
+      "avatar": "assets/images/tzara.png"
     },
     {
       "id": "richard-huelsenbeck",
       "nombre": "Richard Huelsenbeck (IA)",
-      "avatar": "assets/images/richard-huelsenbeck.png"
+      "avatar": "assets/images/huelsenbeck.png"
     }
   ],
   "dialogo": [

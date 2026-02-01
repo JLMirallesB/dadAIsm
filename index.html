@@ -20,8 +20,15 @@
         <!-- La conversación se generará aquí dinámicamente -->
     </main>
 
-    <footer>
-        <p>Fin de la transmisión.</p>
+    <footer id="main-footer">
+        <p class="end-transmission">— Fin de la transmisión —</p>
+        <p class="credits">
+            Creado por <a href="https://www.jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a>
+            con ayuda de Gemini y Claude
+        </p>
+        <p class="support">
+            <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener">☕ Invítame a una horchata</a>
+        </p>
     </footer>
 
     <!-- Plantilla para cada mensaje de la conversación -->
@@ -29,9 +36,9 @@
         <article class="message">
             <div class="avatar"></div>
             <div class="message-content">
+                <small class="meta-info"></small>
                 <strong class="author"></strong>
                 <p class="text"></p>
-                <small class="meta-info"></small>
             </div>
         </article>
     </template>

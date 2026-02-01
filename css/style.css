@@ -20,10 +20,11 @@ body {
     line-height: 1.7;
     margin: 0;
     padding: 1rem;
+    padding-top: 1rem;
     padding-bottom: 120px;
 }
 
-header, footer {
+header {
     text-align: center;
     font-family: var(--font-mono);
     text-transform: uppercase;
@@ -49,12 +50,14 @@ header .subtitle {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding-top: 1rem;
 }
 
 .message {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
+    scroll-margin-top: 1rem;
 }
 
 .avatar {
@@ -90,6 +93,18 @@ header .subtitle {
     box-shadow: 3px 3px 0px var(--border-color);
 }
 
+.meta-info {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.meta-info:empty {
+    display: none;
+}
+
 .author {
     display: block;
     margin-bottom: 0.5rem;
@@ -103,14 +118,6 @@ header .subtitle {
     white-space: pre-wrap;
     word-wrap: break-word;
     font-size: 1rem;
-}
-
-.meta-info {
-    display: block;
-    margin-top: 1rem;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: #666;
 }
 
 /* Estilos específicos para diferenciar personajes */
@@ -152,6 +159,64 @@ header .subtitle {
 .message.active {
     opacity: 1;
     transform: scale(1.01);
+}
+
+/* Footer */
+#main-footer {
+    text-align: center;
+    max-width: 900px;
+    margin: 3rem auto 2rem;
+    padding: 2rem 1rem;
+    font-family: var(--font-mono);
+    transition: opacity 0.4s ease;
+}
+
+#main-footer.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.end-transmission {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.credits {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: none;
+}
+
+.credits a {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.credits a:hover {
+    color: var(--accent-color);
+}
+
+.support {
+    margin-top: 1rem;
+}
+
+.support a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border: 2px solid var(--border-color);
+    box-shadow: 2px 2px 0 var(--border-color);
+    transition: all 0.2s;
+    text-transform: none;
+}
+
+.support a:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--border-color);
 }
 
 /* Controles de navegación */
@@ -202,12 +267,14 @@ header .subtitle {
 @media (max-width: 600px) {
     body {
         padding: 0.5rem;
+        padding-bottom: 100px;
     }
 
     .message {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        scroll-margin-top: 0.5rem;
     }
 
     .avatar {
@@ -224,6 +291,10 @@ header .subtitle {
         text-align: left;
     }
 
+    .meta-info {
+        text-align: center;
+    }
+
     .nav-controls {
         bottom: 1rem;
         padding: 0.5rem 1rem;
@@ -233,5 +304,9 @@ header .subtitle {
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
+    }
+
+    #main-footer {
+        padding: 1.5rem 0.5rem;
     }
 }
