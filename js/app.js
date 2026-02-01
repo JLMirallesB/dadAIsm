@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageTemplate = document.getElementById('message-template');
     const mainFooter = document.getElementById('main-footer');
 
-    let currentIndex = 0;
+    let currentIndex = -1; // -1 = header view, totalMessages = footer view
     let totalMessages = 0;
     let messages = [];
 
@@ -93,7 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
         messages.forEach((msg, index) => {
             msg.classList.remove('active', 'past', 'future');
 
-            if (index === currentIndex) {
+            if (currentIndex === -1) {
+                // Vista del header: todos los mensajes son futuros
+                msg.classList.add('future');
+            } else if (currentIndex === totalMessages) {
+                // Vista del footer: todos los mensajes son pasados
+                msg.classList.add('past');
+            } else if (index === currentIndex) {
                 msg.classList.add('active');
             } else if (index < currentIndex) {
                 msg.classList.add('past');
@@ -102,8 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Scroll al inicio del mensaje actual
-        if (messages[currentIndex]) {
+        // Scroll según el estado
+        if (currentIndex === -1) {
+            // Scroll al header
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (currentIndex === totalMessages) {
+            // Scroll al footer
+            if (mainFooter) {
+                mainFooter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } else if (messages[currentIndex]) {
             messages[currentIndex].scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -112,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Mostrar/ocultar footer
         if (mainFooter) {
-            if (currentIndex === totalMessages - 1) {
+            if (currentIndex >= totalMessages - 1) {
                 mainFooter.classList.remove('hidden');
             } else {
                 mainFooter.classList.add('hidden');
@@ -125,7 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function navigate(direction) {
         const newIndex = currentIndex + direction;
-        if (newIndex >= 0 && newIndex < totalMessages) {
+        // Permitir desde -1 (header) hasta totalMessages (footer)
+        if (newIndex >= -1 && newIndex <= totalMessages) {
             currentIndex = newIndex;
             updateView();
         }
@@ -159,14 +174,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCounter() {
         const counter = document.querySelector('.nav-counter');
         if (counter) {
-            counter.textContent = `${currentIndex + 1} / ${totalMessages}`;
+            if (currentIndex === -1) {
+                counter.textContent = `Inicio`;
+            } else if (currentIndex === totalMessages) {
+                counter.textContent = `Fin`;
+            } else {
+                counter.textContent = `${currentIndex + 1} / ${totalMessages}`;
+            }
         }
 
         // Deshabilitar botones en los extremos
         const prevBtn = document.querySelector('.nav-prev');
         const nextBtn = document.querySelector('.nav-next');
-        if (prevBtn) prevBtn.disabled = currentIndex === 0;
-        if (nextBtn) nextBtn.disabled = currentIndex === totalMessages - 1;
+        if (prevBtn) prevBtn.disabled = currentIndex === -1;
+        if (nextBtn) nextBtn.disabled = currentIndex === totalMessages;
     }
 
     loadConversation();
