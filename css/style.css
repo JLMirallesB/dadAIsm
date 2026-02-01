@@ -24,11 +24,14 @@
 .terminal {
     width: 90%;
     max-width: 700px;
+    max-height: 90vh;
     background: #1a1a1a;
     border: 2px solid #333;
     border-radius: 8px;
     box-shadow: 0 0 40px rgba(209, 35, 35, 0.3);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .terminal-header {
@@ -55,7 +58,9 @@
 
 .terminal-body {
     padding: 1.5rem;
-    min-height: 300px;
+    min-height: 200px;
+    flex: 1;
+    overflow-y: auto;
     font-family: 'Cutive Mono', monospace;
     font-size: 1rem;
     line-height: 1.8;

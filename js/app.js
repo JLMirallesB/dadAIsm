@@ -52,6 +52,7 @@ de la forma más ruidosa posible.
 
     // Función de typing effect
     function typeText(text, element, speed = 30) {
+        const terminalBody = element.parentElement;
         return new Promise((resolve) => {
             let i = 0;
             element.textContent = '';
@@ -60,6 +61,8 @@ de la forma más ruidosa posible.
                 if (i < text.length) {
                     element.textContent += text.charAt(i);
                     i++;
+                    // Auto-scroll al fondo mientras escribe
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
                     setTimeout(type, speed);
                 } else {
                     resolve();
