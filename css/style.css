@@ -20,6 +20,7 @@ body {
     line-height: 1.7;
     margin: 0;
     padding: 1rem;
+    padding-bottom: 120px;
 }
 
 header, footer {
@@ -135,6 +136,68 @@ header .subtitle {
     border-width: 4px;
 }
 
+/* Estados de navegación */
+.message {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.message.past {
+    opacity: 0.25;
+}
+
+.message.future {
+    opacity: 0.15;
+}
+
+.message.active {
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+/* Controles de navegación */
+.nav-controls {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--background-color);
+    border: 2px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    box-shadow: 4px 4px 0 var(--border-color);
+    z-index: 100;
+}
+
+.nav-btn {
+    background: white;
+    border: 2px solid var(--border-color);
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: all 0.2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: var(--accent-color);
+    color: white;
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.nav-counter {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    min-width: 80px;
+    text-align: center;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     body {
@@ -159,5 +222,16 @@ header .subtitle {
 
     .text {
         text-align: left;
+    }
+
+    .nav-controls {
+        bottom: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
 }
