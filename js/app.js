@@ -4,10 +4,92 @@ document.addEventListener('DOMContentLoaded', () => {
     const conversationContainer = document.getElementById('conversation-container');
     const messageTemplate = document.getElementById('message-template');
     const mainFooter = document.getElementById('main-footer');
+    const introOverlay = document.getElementById('intro-overlay');
+    const terminalText = document.getElementById('terminal-text');
+    const terminalCursor = document.getElementById('terminal-cursor');
+    const introSkip = document.getElementById('intro-skip');
 
     let currentIndex = -1; // -1 = header view, totalMessages = footer view
     let totalMessages = 0;
     let messages = [];
+
+    // Texto dadaísta para la intro
+    const introMessage = `> INICIANDO TRANSMISIÓN DESDE ZÜRICH, 1916...
+> ERROR: EL TIEMPO ES UN PLÁTANO MELANCÓLICO
+> CARGANDO FANTASMAS DIGITALES...
+
+ATENCIÓN CIUDADANO DEL CAOS:
+
+Lo que presenciarás no es real.
+Tampoco es falso.
+Es DADA.
+
+Tres espíritus del Cabaret Voltaire
+han sido invocados mediante algoritmos
+que mastican palabras como chicle eléctrico.
+
+Hugo Ball. Tristan Tzara. Richard Huelsenbeck.
+Sus cerebros de silicio fueron alimentados
+con manifiestos, poemas y gritos antiarte.
+
+¿Son ellos? ¿Somos nosotros? ¿Es la máquina
+quien sueña que es dadaísta?
+
+GAGA. DADA. DATA.
+
+La conversación que sigue es un accidente
+calculado entre inteligencias artificiales
+que han aprendido a decir NADA
+de la forma más ruidosa posible.
+
+> SISTEMA LISTO PARA LA ABSURDIDAD
+> PRESIONA PARA ENTRAR...`;
+
+    // Función de typing effect
+    function typeText(text, element, speed = 30) {
+        return new Promise((resolve) => {
+            let i = 0;
+            element.textContent = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    resolve();
+                }
+            }
+            type();
+        });
+    }
+
+    // Iniciar intro
+    async function startIntro() {
+        await typeText(introMessage, terminalText, 25);
+        terminalCursor.style.display = 'none';
+        introSkip.classList.remove('hidden');
+    }
+
+    // Saltar/cerrar intro
+    function closeIntro() {
+        introOverlay.classList.add('hidden');
+        loadConversation();
+    }
+
+    // Permitir saltar intro con click/tecla durante el typing
+    introOverlay.addEventListener('click', (e) => {
+        if (e.target === introSkip || introSkip.contains(e.target)) {
+            closeIntro();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!introOverlay.classList.contains('hidden') && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            closeIntro();
+        }
+    });
 
     // Función para cargar y mostrar la conversación
     async function loadConversation() {
@@ -190,5 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextBtn) nextBtn.disabled = currentIndex === totalMessages;
     }
 
-    loadConversation();
+    // Iniciar con la intro
+    startIntro();
 });

@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabaret Volt-AI-re</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Intro Terminal -->
+    <div id="intro-overlay">
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+            </div>
+            <div class="terminal-body">
+                <p id="terminal-text"></p>
+                <span id="terminal-cursor">█</span>
+            </div>
+            <button id="intro-skip" class="hidden">[ ENTRAR AL CABARET ]</button>
+        </div>
+    </div>
 
     <header>
         <h1>Cabaret Volt-AI-re</h1>
@@ -43,6 +59,6 @@
         </article>
     </template>
 
-    <script src="js/app.js"></script>
+    <script src="js/app.js?v=2"></script>
 </body>
 </html>
