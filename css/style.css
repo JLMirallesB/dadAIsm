@@ -51,9 +51,25 @@ header .subtitle {
 }
 
 .avatar {
-    font-size: 3rem; /* Tamaño del emoji */
-    line-height: 1;
-    margin-top: 5px;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: var(--font-mono);
+    color: var(--accent-color);
+    background-color: #eee;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .message-content {

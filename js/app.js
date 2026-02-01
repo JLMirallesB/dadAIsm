@@ -26,7 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Rellenar los datos
                 messageElement.dataset.character = personaje.id;
-                messageElement.querySelector('.avatar').textContent = personaje.avatar;
+
+                // Manejar avatar como imagen
+                const avatarContainer = messageElement.querySelector('.avatar');
+                const avatarImg = document.createElement('img');
+                avatarImg.src = personaje.avatar;
+                avatarImg.alt = personaje.nombre;
+                avatarImg.onerror = function() {
+                    // Fallback: mostrar inicial del nombre si la imagen no carga
+                    this.style.display = 'none';
+                    avatarContainer.textContent = personaje.nombre.charAt(0);
+                };
+                avatarContainer.appendChild(avatarImg);
+
                 messageElement.querySelector('.author').textContent = personaje.nombre;
                 messageElement.querySelector('.text').textContent = entry.texto;
 
