@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            
+
             const personajes = data.personajes;
             const dialogo = data.dialogo;
 
@@ -27,17 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Rellenar los datos
                 messageElement.dataset.character = personaje.id;
 
-                // Manejar avatar como imagen
+                // Manejar avatar
                 const avatarContainer = messageElement.querySelector('.avatar');
-                const avatarImg = document.createElement('img');
-                avatarImg.src = personaje.avatar;
-                avatarImg.alt = personaje.nombre;
-                avatarImg.onerror = function() {
-                    // Fallback: mostrar inicial del nombre si la imagen no carga
-                    this.style.display = 'none';
-                    avatarContainer.textContent = personaje.nombre.charAt(0);
+                const inicial = personaje.nombre.charAt(0).toUpperCase();
+
+                // Crear imagen
+                const img = document.createElement('img');
+                img.src = personaje.avatar;
+                img.alt = personaje.nombre;
+
+                // Si la imagen falla, mostrar la inicial
+                img.onerror = function() {
+                    this.remove();
+                    avatarContainer.textContent = inicial;
                 };
-                avatarContainer.appendChild(avatarImg);
+
+                avatarContainer.appendChild(img);
 
                 messageElement.querySelector('.author').textContent = personaje.nombre;
                 messageElement.querySelector('.text').textContent = entry.texto;
@@ -46,10 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (entry.dirigidoA) {
                     const dirigidoAPersonaje = personajes.find(p => p.id === entry.dirigidoA);
                     if (dirigidoAPersonaje) {
-                        messageElement.querySelector('.meta-info').textContent = `(En respuesta a @${dirigidoAPersonaje.nombre})`;
+                        messageElement.querySelector('.meta-info').textContent = `→ ${dirigidoAPersonaje.nombre}`;
                     }
                 }
-                
+
                 // Añadir el mensaje al contenedor
                 conversationContainer.appendChild(messageElement);
             });

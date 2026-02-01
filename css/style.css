@@ -9,23 +9,29 @@
     --font-mono: 'Cutive Mono', monospace;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: var(--font-serif);
-    line-height: 1.6;
+    line-height: 1.7;
     margin: 0;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 header, footer {
     text-align: center;
     font-family: var(--font-mono);
     text-transform: uppercase;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 header h1 {
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 5vw, 3rem);
     color: var(--accent-color);
     margin: 0;
     font-weight: 700;
@@ -37,30 +43,31 @@ header .subtitle {
 }
 
 #conversation-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 .message {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     align-items: flex-start;
 }
 
 .avatar {
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
     font-family: var(--font-mono);
     color: var(--accent-color);
-    background-color: #eee;
+    background-color: #ddd;
     border: 2px solid var(--border-color);
     border-radius: 50%;
     overflow: hidden;
@@ -70,15 +77,15 @@ header .subtitle {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .message-content {
     flex: 1;
+    min-width: 0;
     border: 2px solid var(--border-color);
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
     background-color: white;
-    position: relative;
-    /* Simula un borde rasgado o irregular */
     box-shadow: 3px 3px 0px var(--border-color);
 }
 
@@ -86,20 +93,22 @@ header .subtitle {
     display: block;
     margin-bottom: 0.5rem;
     font-family: var(--font-mono);
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--accent-color);
 }
 
 .text {
     margin: 0;
-    white-space: pre-wrap; /* Respeta los saltos de línea del JSON */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 1rem;
 }
 
 .meta-info {
     display: block;
     margin-top: 1rem;
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
 }
 
@@ -124,4 +133,31 @@ header .subtitle {
 .message[data-character="richard-huelsenbeck"] .message-content {
     border-style: groove;
     border-width: 4px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .message {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+
+    .message-content {
+        width: 100%;
+    }
+
+    .text {
+        text-align: left;
+    }
 }
