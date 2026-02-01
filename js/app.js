@@ -48,7 +48,9 @@ que han aprendido a decir NADA
 de la forma más ruidosa posible.
 
 > SISTEMA LISTO PARA LA ABSURDIDAD
-> SELECCIONA UNA OPCIÓN...`;
+> SELECCIONA UNA OPCIÓN...
+
+(pulsa ESC para saltar la animación)`;
 
     // Links a los chatbots
     const chatbotLinks = {
@@ -58,6 +60,8 @@ de la forma más ruidosa posible.
     };
 
     // Función de typing effect
+    let skipTyping = false;
+
     function typeText(text, element, speed = 30) {
         const terminalBody = element.parentElement;
         return new Promise((resolve) => {
@@ -65,6 +69,13 @@ de la forma más ruidosa posible.
             element.textContent = '';
 
             function type() {
+                if (skipTyping) {
+                    // Mostrar todo el texto inmediatamente
+                    element.textContent = text;
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                    resolve();
+                    return;
+                }
                 if (i < text.length) {
                     element.textContent += text.charAt(i);
                     i++;
@@ -78,6 +89,13 @@ de la forma más ruidosa posible.
             type();
         });
     }
+
+    // Saltar animación con ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !introOverlay.classList.contains('hidden') && terminalMenu.classList.contains('hidden')) {
+            skipTyping = true;
+        }
+    });
 
     // Iniciar intro
     async function startIntro() {
