@@ -1,0 +1,111 @@
+/* css/style.css */
+
+:root {
+    --background-color: #f4f1ea; /* Un blanco roto, como papel antiguo */
+    --text-color: #1a1a1a;
+    --accent-color: #d12323; /* Un rojo fuerte para acentos */
+    --border-color: #333;
+    --font-serif: 'Libre Baskerville', serif;
+    --font-mono: 'Cutive Mono', monospace;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    margin: 0;
+    padding: 2rem;
+}
+
+header, footer {
+    text-align: center;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin: 0;
+    font-weight: 700;
+}
+
+header .subtitle {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+#conversation-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.message {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.avatar {
+    font-size: 3rem; /* Tamaño del emoji */
+    line-height: 1;
+    margin-top: 5px;
+}
+
+.message-content {
+    flex: 1;
+    border: 2px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    background-color: white;
+    position: relative;
+    /* Simula un borde rasgado o irregular */
+    box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.author {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+.text {
+    margin: 0;
+    white-space: pre-wrap; /* Respeta los saltos de línea del JSON */
+}
+
+.meta-info {
+    display: block;
+    margin-top: 1rem;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Estilos específicos para diferenciar personajes */
+.message[data-character="jose-luis"] .message-content {
+    border-style: solid;
+}
+
+.message[data-character="chatgpt4"] .message-content {
+    border-style: dashed;
+}
+
+.message[data-character="hugo-ball"] .message-content {
+    border-style: dotted;
+}
+
+.message[data-character="tristan-tzara"] .message-content {
+    border-style: double;
+    border-width: 4px;
+}
+
+.message[data-character="richard-huelsenbeck"] .message-content {
+    border-style: groove;
+    border-width: 4px;
+}

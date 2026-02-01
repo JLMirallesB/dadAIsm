@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabaret Volt-AI-re</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Cabaret Volt-AI-re</h1>
+        <p class="subtitle">Una tertulia Dadaísta generada por IA</p>
+    </header>
+
+    <main id="conversation-container">
+        <!-- La conversación se generará aquí dinámicamente -->
+    </main>
+
+    <footer>
+        <p>Fin de la transmisión.</p>
+    </footer>
+
+    <!-- Plantilla para cada mensaje de la conversación -->
+    <template id="message-template">
+        <article class="message">
+            <div class="avatar"></div>
+            <div class="message-content">
+                <strong class="author"></strong>
+                <p class="text"></p>
+                <small class="meta-info"></small>
+            </div>
+        </article>
+    </template>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

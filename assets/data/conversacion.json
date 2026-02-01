@@ -1,0 +1,36 @@
+{
+  "personajes": [
+    {
+      "id": "jose-luis",
+      "nombre": "José Luis Miralles",
+      "avatar": "🎤"
+    },
+    {
+      "id": "chatgpt4",
+      "nombre": "ChatGPT 4",
+      "avatar": "🤖"
+    },
+    {
+      "id": "hugo-ball",
+      "nombre": "Hugo Ball (IA)",
+      "avatar": "🎩"
+    },
+    {
+      "id": "tristan-tzara",
+      "nombre": "Tristan Tzara (IA)",
+      "avatar": "💥"
+    },
+    {
+      "id": "richard-huelsenbeck",
+      "nombre": "Richard Huelsenbeck (IA)",
+      "avatar": "🥁"
+    }
+  ],
+  "dialogo": [
+    {
+      "personajeId": "jose-luis",
+      "texto": "Meine Damen und Herren! Bienvenidos al cabaret volt-AI-re!\nEn esta ocasión tenemos la inescrutable compañía de tres personajes claves del movimiento DADA; Hugo Ball, Tristan Tzara y Richard Huelsenbeck. Además a mi derecha se encuentra ChatGPT 4 que me está escuchando e introduciéndose en la atmósfera del cabaret virtual. La función de mi asistente virtual será la de guiar una conversación sobre varias temáticas para cuya discusión invocaremos a estos personajes. ChatGPT 4 analizará las respuestas de cada IA que invoquemos y decidirá cuál será el siguiente prompt. Además intentará en sus prompts remarcar las diferencias entre estos tres personajes. Los temas a explorar serán:\n- ¿Qué es Dada?\n- ¿Existe algún objetivo en el arte Dada?\n- ¿Cómo se posicionaría un artista Dada en el mundo contemporáneo?\nY finalmente el señor Hugo Ball, nos recitará una poesía.\nPor mi parte me encargaré de ir invocando a cada una de las personalidades.\n¡Empecemos!"
+    }
+    // ... (el resto del JSON que ya te proporcioné va aquí)
+  ]
+}
