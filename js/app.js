@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const introOverlay = document.getElementById('intro-overlay');
     const terminalText = document.getElementById('terminal-text');
     const terminalCursor = document.getElementById('terminal-cursor');
-    const introSkip = document.getElementById('intro-skip');
+    const terminalMenu = document.getElementById('terminal-menu');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxTitle = document.getElementById('lightbox-title');
@@ -48,7 +48,14 @@ que han aprendido a decir NADA
 de la forma más ruidosa posible.
 
 > SISTEMA LISTO PARA LA ABSURDIDAD
-> PRESIONA PARA ENTRAR...`;
+> SELECCIONA UNA OPCIÓN...`;
+
+    // Links a los chatbots
+    const chatbotLinks = {
+        hugo: 'https://chat.openai.com/g/g-M6y6Twecp-hugo-ball-gpt-dadaism-chatbot',
+        tristan: 'https://chat.openai.com/g/g-8TFreiqqZ-tristan-tzara-gpt-dadaism-chatbot',
+        richard: 'https://chat.openai.com/g/g-HkF53ASDE-richard-huelsenbeck-gpt-dadaism-chatbot'
+    };
 
     // Función de typing effect
     function typeText(text, element, speed = 30) {
@@ -76,26 +83,50 @@ de la forma más ruidosa posible.
     async function startIntro() {
         await typeText(introMessage, terminalText, 25);
         terminalCursor.style.display = 'none';
-        introSkip.classList.remove('hidden');
+        terminalMenu.classList.remove('hidden');
     }
 
-    // Saltar/cerrar intro
-    function closeIntro() {
+    // Cerrar intro y entrar al cabaret
+    function enterCabaret() {
         introOverlay.classList.add('hidden');
         loadConversation();
     }
 
-    // Permitir saltar intro con click/tecla durante el typing
-    introOverlay.addEventListener('click', (e) => {
-        if (e.target === introSkip || introSkip.contains(e.target)) {
-            closeIntro();
+    // Manejar acción del menú
+    function handleMenuAction(action) {
+        if (action === 'cabaret') {
+            enterCabaret();
+        } else if (chatbotLinks[action]) {
+            window.open(chatbotLinks[action], '_blank');
+        }
+    }
+
+    // Event listeners del menú
+    terminalMenu.addEventListener('click', (e) => {
+        const option = e.target.closest('.menu-option');
+        if (option) {
+            handleMenuAction(option.dataset.action);
         }
     });
 
+    // Atajos de teclado para el menú
     document.addEventListener('keydown', (e) => {
-        if (!introOverlay.classList.contains('hidden') && (e.key === 'Enter' || e.key === ' ')) {
+        if (introOverlay.classList.contains('hidden')) return;
+        if (terminalMenu.classList.contains('hidden')) return;
+
+        const key = e.key.toUpperCase();
+        if (key === 'C') {
             e.preventDefault();
-            closeIntro();
+            handleMenuAction('cabaret');
+        } else if (key === 'H') {
+            e.preventDefault();
+            handleMenuAction('hugo');
+        } else if (key === 'T') {
+            e.preventDefault();
+            handleMenuAction('tristan');
+        } else if (key === 'R') {
+            e.preventDefault();
+            handleMenuAction('richard');
         }
     });
 

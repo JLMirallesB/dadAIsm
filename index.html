@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabaret Volt-AI-re</title>
-    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/style.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -35,7 +35,20 @@
                 <p id="terminal-text"></p>
                 <span id="terminal-cursor">█</span>
             </div>
-            <button id="intro-skip" class="hidden">[ ENTRAR AL CABARET ]</button>
+            <div id="terminal-menu" class="hidden">
+                <button class="menu-option" data-key="C" data-action="cabaret">
+                    <span class="key">[C]</span> Entrar al Cabaret Volt·AI·re
+                </button>
+                <button class="menu-option" data-key="H" data-action="hugo">
+                    <span class="key">[H]</span> Hablar con Hugo Ball
+                </button>
+                <button class="menu-option" data-key="T" data-action="tristan">
+                    <span class="key">[T]</span> Hablar con Tristan Tzara
+                </button>
+                <button class="menu-option" data-key="R" data-action="richard">
+                    <span class="key">[R]</span> Hablar con Richard Huelsenbeck
+                </button>
+            </div>
         </div>
     </div>
 
@@ -71,6 +84,6 @@
         </article>
     </template>
 
-    <script src="js/app.js?v=4"></script>
+    <script src="js/app.js?v=5"></script>
 </body>
 </html>
