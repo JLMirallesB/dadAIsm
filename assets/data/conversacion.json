@@ -153,6 +153,27 @@
       "texto": "Claro, vamos a diseñar prompts detallados para capturar la esencia de cada propuesta radical imaginada por nuestros distinguidos invitados, enriqueciéndolos con elementos estilísticos del Dada histórico:\n### Prompt para la Propuesta de Hugo Ball - \"Anti-Contenido\":\nDescripción: Crea una imagen que represente una obra de arte digital que se autodestruye después de ser vista, dentro de un contexto saturado de tecnología y redes sociales. La obra debe incorporar elementos visuales dadaístas como la yuxtaposición inesperada, el collage de imágenes antiguas y modernas, y textos recortados de periódicos o revistas que critiquen la cultura de consumo rápido de la información. Imagina un fondo que evoque las redes sociales, lleno de iconos y emojis, sobre el cual se superpone una pieza de arte efímera y cambiante, que desafía las expectativas tradicionales del espectador.\n### Prompt para la Propuesta de Tristan Tzara - \"Campaña para la Presidencia de Ninguna Parte\":\nDescripción: Diseña una imagen que capture la esencia de una campaña política ficticia para un país inexistente, siguiendo el enfoque radical de Tristan Tzara. Utiliza elementos de diseño Dada, como montajes fotográficos absurdos, tipografía anárquica, y retratos manipulados de figuras políticas ficticias que prometen cambios imposibles. El fondo debe reflejar una mezcla de iconografía política tradicional y elementos surrealistas, creando un efecto desorientador. Incluye eslóganes contradictorios y promesas políticas absurdas, todo presentado con un toque de sátira y humor negro característico de Dada.\n### Prompt para la Propuesta de Richard Huelsenbeck - \"Bosque Invertido\":\nDescripción: Genera una imagen que ilustre el concepto del \"Bosque Invertido\", donde los árboles están plantados cabeza abajo con las raíces expuestas al aire. Este paisaje debe fusionar lo natural con lo urbano de una manera surrealista y provocativa, típica del movimiento Dada. Incorpora elementos visuales como edificios de concreto y acero que se entrelazan con las raíces aéreas, yuxtapuestos con cielos dramáticos que evocan un futuro distópico. La composición debe jugar con perspectivas imposibles y contrastes fuertes, buscando transmitir una crítica visual a la deforestación y la desconexión humana de la naturaleza.\nCada uno de estos prompts está diseñado para inspirar imágenes que no solo reflejen las ideas radicales propuestas por los artistas, sino que también capturen el espíritu rebelde y la estética visual del Dadaísmo, proporcionando una mirada contemporánea a través del prisma de este movimiento artístico histórico."
     },
     {
+      "tipo": "galeria",
+      "texto": "Las tres propuestas visualizadas por inteligencia artificial generativa:",
+      "imagenes": [
+        {
+          "src": "assets/images/anticontenido.png",
+          "titulo": "Anti-Contenido",
+          "autor": "Propuesta de Hugo Ball (IA)"
+        },
+        {
+          "src": "assets/images/presidencianinguna.png",
+          "titulo": "Campaña para la Presidencia de Ninguna Parte",
+          "autor": "Propuesta de Tristan Tzara (IA)"
+        },
+        {
+          "src": "assets/images/boqueinvertido.png",
+          "titulo": "Bosque Invertido",
+          "autor": "Propuesta de Richard Huelsenbeck (IA)"
+        }
+      ]
+    },
+    {
       "personajeId": "jose-luis",
       "texto": "Finalmente, el señor Ball nos deleitará con una de sus poesías fonéticas que improvisará inspirándose en las tres propuestas que ha realizado cada uno de nuestros invitados.",
       "dirigidoA": "hugo-ball"

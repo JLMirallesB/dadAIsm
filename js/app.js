@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminalText = document.getElementById('terminal-text');
     const terminalCursor = document.getElementById('terminal-cursor');
     const introSkip = document.getElementById('intro-skip');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxAuthor = document.getElementById('lightbox-author');
+    const lightboxClose = document.getElementById('lightbox-close');
 
     let currentIndex = -1; // -1 = header view, totalMessages = footer view
     let totalMessages = 0;
@@ -91,6 +96,70 @@ de la forma más ruidosa posible.
         }
     });
 
+    // Funciones del lightbox
+    function openLightbox(src, titulo, autor) {
+        lightboxImg.src = src;
+        lightboxTitle.textContent = titulo;
+        lightboxAuthor.textContent = autor;
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    // Event listeners del lightbox
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+            closeLightbox();
+        }
+    });
+
+    // Crear elemento de galería
+    function createGalleryElement(entry, index) {
+        const galleryMessage = document.createElement('article');
+        galleryMessage.className = 'message';
+        galleryMessage.dataset.index = index;
+        galleryMessage.dataset.character = 'galeria';
+
+        galleryMessage.innerHTML = `
+            <div class="avatar" style="background: var(--accent-color); color: white;">🎨</div>
+            <div class="message-content">
+                <strong class="author">Galería DADA</strong>
+                <p class="text">${entry.texto}</p>
+                <div class="gallery"></div>
+            </div>
+        `;
+
+        const galleryContainer = galleryMessage.querySelector('.gallery');
+
+        entry.imagenes.forEach((imagen) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `
+                <img src="${imagen.src}" alt="${imagen.titulo}">
+                <div class="gallery-caption">
+                    <strong>${imagen.titulo}</strong>
+                    <div class="gallery-author">${imagen.autor}</div>
+                </div>
+            `;
+            item.addEventListener('click', () => {
+                openLightbox(imagen.src, imagen.titulo, imagen.autor);
+            });
+            galleryContainer.appendChild(item);
+        });
+
+        return galleryMessage;
+    }
+
     // Función para cargar y mostrar la conversación
     async function loadConversation() {
         try {
@@ -105,6 +174,13 @@ de la forma más ruidosa posible.
             totalMessages = dialogo.length;
 
             dialogo.forEach((entry, index) => {
+                // Manejar entrada de galería
+                if (entry.tipo === 'galeria') {
+                    const galleryElement = createGalleryElement(entry, index);
+                    conversationContainer.appendChild(galleryElement);
+                    return;
+                }
+
                 const personaje = personajes.find(p => p.id === entry.personajeId);
                 if (!personaje) return;
 
