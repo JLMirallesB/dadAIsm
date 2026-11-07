@@ -563,3 +563,8 @@ header .subtitle {
     font-style: italic;
     color: #ccc;
 }
+
+.footer-licencia {
+    font-size: 0.75rem;
+    margin-top: 1rem;
+}
